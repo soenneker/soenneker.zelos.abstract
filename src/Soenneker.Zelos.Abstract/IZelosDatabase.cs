@@ -32,5 +32,5 @@ public interface IZelosDatabase : IAsyncDisposable
     /// <returns>A Task representing the asynchronous operation.</returns>
     ValueTask Save(CancellationToken cancellationToken = default);
 
-    ValueTask UnloadContainer(string containerName, CancellationToken cancellationToken = default);
+    ValueTask<bool> UnloadContainer(string containerName, CancellationToken cancellationToken = default);
 }
