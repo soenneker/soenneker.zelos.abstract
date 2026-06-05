@@ -12,6 +12,11 @@ namespace Soenneker.Zelos.Abstract;
 /// </summary>
 public interface IZelosContainer : IDisposable
 {
+    /// <summary>
+    /// Builds queryable.
+    /// </summary>
+    /// <typeparam name="T">The T type.</typeparam>
+    /// <returns>The result of the operation.</returns>
     IQueryable<T> BuildQueryable<T>();
 
     /// <summary>
@@ -45,6 +50,13 @@ public interface IZelosContainer : IDisposable
     /// <param name="cancellationToken">Cancellation token.</param>
     ValueTask<string?> UpdateItem(string id, string document, CancellationToken cancellationToken = default);
 
+    /// <summary>
+    /// Updates item strict.
+    /// </summary>
+    /// <param name="id">The identifier.</param>
+    /// <param name="document">The document.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A task containing the result of the operation.</returns>
     ValueTask<string> UpdateItemStrict(string id, string document, CancellationToken cancellationToken = default);
 
     /// <summary>
@@ -60,9 +72,22 @@ public interface IZelosContainer : IDisposable
     /// <returns>A list of all stored documents.</returns>
     List<string> GetAllItems();
 
+    /// <summary>
+    /// Gets all ids.
+    /// </summary>
+    /// <returns>The result of the operation.</returns>
     List<string> GetAllIds();
 
+    /// <summary>
+    /// Gets zelos items.
+    /// </summary>
+    /// <returns>The result of the operation.</returns>
     List<IdValuePair> GetZelosItems();
 
+    /// <summary>
+    /// Deletes all items.
+    /// </summary>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
     ValueTask DeleteAllItems(CancellationToken cancellationToken = default);
 }
