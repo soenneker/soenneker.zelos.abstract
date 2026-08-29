@@ -18,9 +18,9 @@ public interface IZelosDatabase : IAsyncDisposable
     ValueTask MarkDirty(string containerName, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Retrieves a container from the database, loading it if necessary.
+    /// Retrieves container.
     /// </summary>
-    /// <param name="containerName">The name of the container.</param>
+    /// <param name="containerName">Name of the container to target.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>A ValueTask containing the requested ZelosContainer.</returns>
     ValueTask<IZelosContainer> GetContainer(string containerName, CancellationToken cancellationToken = default);
@@ -33,10 +33,10 @@ public interface IZelosDatabase : IAsyncDisposable
     ValueTask Save(CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Executes the unload container operation.
+    /// Unloads the named container from the database.
     /// </summary>
-    /// <param name="containerName">The container name.</param>
-    /// <param name="cancellationToken">The cancellation token.</param>
-    /// <returns>A task containing the result of the operation.</returns>
+    /// <param name="containerName">Name of the container to target.</param>
+    /// <param name="cancellationToken">Token used to cancel the operation.</param>
+    /// <returns>true if the container was unloaded; otherwise, false.</returns>
     ValueTask<bool> UnloadContainer(string containerName, CancellationToken cancellationToken = default);
 }

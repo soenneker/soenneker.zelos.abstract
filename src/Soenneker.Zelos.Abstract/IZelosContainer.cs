@@ -15,8 +15,8 @@ public interface IZelosContainer : IDisposable
     /// <summary>
     /// Builds queryable.
     /// </summary>
-    /// <typeparam name="T">The T type.</typeparam>
-    /// <returns>The result of the operation.</returns>
+    /// <typeparam name="T">Type of value handled by the Zelos Container.</typeparam>
+    /// <returns>The resulting queryable.</returns>
     IQueryable<T> BuildQueryable<T>();
 
     /// <summary>
@@ -45,25 +45,27 @@ public interface IZelosContainer : IDisposable
     /// <summary>
     /// Updates an existing document in the container.
     /// </summary>
-    /// <param name="id"></param>
-    /// <param name="document">The updated document.</param>
+    /// <param name="id">Identifier of the Zelos Container instance or registration to target.</param>
+    /// <param name="document">Document to read, persist, or update.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>A task whose result is the text returned by update Item.</returns>
     ValueTask<string?> UpdateItem(string id, string document, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Updates item strict.
     /// </summary>
-    /// <param name="id">The identifier.</param>
-    /// <param name="document">The document.</param>
-    /// <param name="cancellationToken">The cancellation token.</param>
-    /// <returns>A task containing the result of the operation.</returns>
+    /// <param name="id">Identifier of the Zelos Container instance or registration to target.</param>
+    /// <param name="document">Document to read, persist, or update.</param>
+    /// <param name="cancellationToken">Token used to cancel the operation.</param>
+    /// <returns>A task whose result is the text returned by update Item Strict.</returns>
     ValueTask<string> UpdateItemStrict(string id, string document, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Deletes a document from the container.
     /// </summary>
-    /// <param name="id">The ID of the document.</param>
+    /// <param name="id">Identifier of the Zelos Container instance or registration to target.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>A task that completes after the targeted files have been deleted.</returns>
     ValueTask DeleteItem(string id, CancellationToken cancellationToken = default);
 
     /// <summary>
@@ -75,19 +77,19 @@ public interface IZelosContainer : IDisposable
     /// <summary>
     /// Gets all ids.
     /// </summary>
-    /// <returns>The result of the operation.</returns>
+    /// <returns>The requested collection.</returns>
     List<string> GetAllIds();
 
     /// <summary>
     /// Gets zelos items.
     /// </summary>
-    /// <returns>The result of the operation.</returns>
+    /// <returns>The requested collection.</returns>
     List<IdValuePair> GetZelosItems();
 
     /// <summary>
     /// Deletes all items.
     /// </summary>
-    /// <param name="cancellationToken">The cancellation token.</param>
-    /// <returns>A task that represents the asynchronous operation.</returns>
+    /// <param name="cancellationToken">Token used to cancel the operation.</param>
+    /// <returns>A task that completes after the targeted files have been deleted.</returns>
     ValueTask DeleteAllItems(CancellationToken cancellationToken = default);
 }
