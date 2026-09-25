@@ -1,4 +1,5 @@
-﻿using System;
+using System.Text.Json.Serialization.Metadata;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -17,7 +18,7 @@ public interface IZelosContainer : IDisposable
     /// </summary>
     /// <typeparam name="T">Type of value handled by the Zelos Container.</typeparam>
     /// <returns>The resulting queryable.</returns>
-    IQueryable<T> BuildQueryable<T>();
+    IQueryable<T> BuildQueryable<T>(JsonTypeInfo<T> typeInfo);
 
     /// <summary>
     /// Adds a document to the container.
